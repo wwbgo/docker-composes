@@ -1,0 +1,18 @@
+version: '3.6'
+
+services:
+  consul:
+    image: consul:1.5
+    ports:
+      - "8500:8500"
+    restart: on-failure
+    volumes:
+      - /opt/consul/data:/consul/data
+
+  regsvr:
+    image: docker.flexem.com/test/apitest:0.4.18
+    ports:
+      - "10080:80"
+    restart: on-failure
+    environment:
+      Settings__Consul__Address: http://consul:8500

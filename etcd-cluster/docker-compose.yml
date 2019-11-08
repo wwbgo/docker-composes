@@ -1,0 +1,60 @@
+version: '3.5'
+
+services:
+  etcd0:
+    image: bitnami/etcd:3
+    restart: always
+    ports:
+      - 12379:2379
+      - 12380:2380
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://192.168.59.251:12379
+      - ETCD_DATA_DIR=/bitnami
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_INITIAL_CLUSTER=etcd0=http://etcd0:2380,etcd1=http://etcd1:2380,etcd2=http://etcd2:2380
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_NAME=etcd0
+    volumes:
+      - /opt/etcd/data0:/bitnami
+  etcd1:
+    image: bitnami/etcd:3
+    restart: always
+    ports:
+      - 22379:2379
+      - 22380:2380
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://192.168.59.251:22379
+      - ETCD_DATA_DIR=/bitnami
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_INITIAL_CLUSTER=etcd0=http://etcd0:2380,etcd1=http://etcd1:2380,etcd2=http://etcd2:2380
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_NAME=etcd1
+    volumes:
+      - /opt/etcd/data1:/bitnami
+  etcd2:
+    image: bitnami/etcd:3
+    restart: always
+    ports:
+      - 32379:2379
+      - 32380:2380
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://192.168.59.251:32379
+      - ETCD_DATA_DIR=/bitnami
+      - ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380
+      - ETCD_INITIAL_CLUSTER=etcd0=http://etcd0:2380,etcd1=http://etcd1:2380,etcd2=http://etcd2:2380
+      - ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster
+      - ETCD_INITIAL_CLUSTER_STATE=new
+      - ETCD_NAME=etcd2
+    volumes:
+      - /opt/etcd/data2:/bitnami
+
+
+networks:
+  default:
+    external: true
+    name: localnet

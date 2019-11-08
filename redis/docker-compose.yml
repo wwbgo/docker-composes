@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  redis:
+    image: redis:5.0
+    ports:
+      - 6379:6379
+    restart: always
+    command:
+      - redis-server
+      - --appendonly yes
+    volumes:
+      - D:\data\redis:/data

@@ -1,0 +1,38 @@
+version: '3.6'
+
+services:
+  Flexem.IdentityServer4.Server:
+    image: flexem.identityserver4.server
+    ports: 
+     - "58491:80"
+    build:
+      context: .
+      dockerfile: ./src/Flexem.IdentityServer4.Server/Dockerfile
+    extra_hosts: 
+      - "localhost:192.168.50.196"
+    environment:
+      UseDB: postgre
+      ConnectionStrings__AdminConnection: "User ID=postgres;Password=postgre;Host=localhost;Port=5432;Database=IdentityServer4Admin;Pooling=true;"
+      IdentityServer__Authority: "http://localhost:58491"
+  
+  Flexem.IdentityServer4.Admin:
+    image: flexem.identityserver4.admin
+    ports: 
+     - "19000:80"
+    build:
+      context: .
+      dockerfile: ./src/Flexem.IdentityServer4.Admin/Dockerfile
+    extra_hosts: 
+      - "localhost:192.168.50.196"
+    environment:
+      UseDB: postgre
+      ConnectionStrings__AdminConnection: "User ID=postgres;Password=postgre;Host=localhost;Port=5432;Database=IdentityServer4Admin;Pooling=true;"
+      AdminConfiguration__IdentityAdminBaseUrl: "http://localhost:19000"
+      AdminConfiguration__IdentityAdminRedirectUri: "http://localhost:19000/signin-oidc"
+      AdminConfiguration__IdentityServerBaseUrl: "http://localhost:58491/core"
+      
+# networks:
+  # default:
+    # driver: bridge
+    # external:
+      # name: bridge

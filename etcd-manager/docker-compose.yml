@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  etcd-manage:
+    image: "shiguanghuxian/etcd-manage"
+    volumes:
+      - E:/volumes/etcd/config/cfg.toml:/app/config/cfg.toml
+      - E:/volumes/etcd/logs:/app/logs
+    ports:
+      - "10281:10280"

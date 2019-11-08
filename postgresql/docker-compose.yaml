@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  postgresql:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgre
+      PGDATA: /bitnami/postgresql
+      PG_MAX_CONNECTIONS: 500
+#    volumes:
+#      - D:\data\postgresql:/bitnami/postgresql

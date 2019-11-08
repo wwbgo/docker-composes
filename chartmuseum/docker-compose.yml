@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  hurricane.host:
+    image: chartmuseum/chartmuseum:latest
+    restart: always
+    ports: 
+     - "8080:8080"
+    environment:
+      STORAGE: local
+      STORAGE_LOCAL_ROOTDIR: /charts
+    volumes:
+      - /charts:/charts

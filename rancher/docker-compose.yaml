@@ -1,0 +1,12 @@
+version: '3.6'
+
+services:
+  rancher:
+    image: rancher/rancher:v2.2.7
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: on-failure
+    volumes:
+      - /root/rancher/data:/var/lib/rancher/
+      - /root/var/log/auditlog:/var/log/auditlog

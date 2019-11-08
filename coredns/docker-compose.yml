@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  etcd:
+    image: coredns/coredns:1.6.4
+    restart: always
+#    network_mode: "host"
+    ports:
+      - 53:53
+      - 53/udp:53/udp
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+    volumes:
+      - /opt/coredns:/etc/coredns

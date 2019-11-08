@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  minio:
+    image: minio/minio
+    command: server /data1-1 /data1-2 /data2-1 /data2-2 /data3-1 /data3-2 /data4-1 /data4-2
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    ports:
+      - "9010:9000"
+    volumes:
+      - E:/volumes/minio/data1-1:/data1-1
+      - E:/volumes/minio/data1-2:/data1-2
+      - E:/volumes/minio/data2-1:/data2-1
+      - E:/volumes/minio/data2-2:/data2-2
+      - E:/volumes/minio/data3-1:/data3-1
+      - E:/volumes/minio/data3-2:/data3-2
+      - E:/volumes/minio/data4-1:/data4-1
+      - E:/volumes/minio/data4-2:/data4-2
