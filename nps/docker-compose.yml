@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  nps:
+    image: ffdfgdfg/nps:0.26.8
+    ports:
+      - 31000:80
+      - 31001:443
+      - 31002:8080
+      - 31003:8024
+      - 31004:1022
+    volumes:
+      - /opt/nps/conf:/conf

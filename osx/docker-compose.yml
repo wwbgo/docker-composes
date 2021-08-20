@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  osx:
+    image: sickcodes/docker-osx
+    container_name: osx
+    user: root
+    environment:
+      DISPLAY: ${DISPLAY:-:0.0}
+      RAM: 4
+      AUDIO_DRIVER: pa
+      server: unix:/tmp/pulseaudio.socket
+    ports:
+      - 50922:10022
+      - 8888:5999
+    devices:
+      - "/dev/kvm:/dev/kvm"
+      - "/dev/snd:/dev/snd"
+    privileged: true
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /run/user/$(id -u)/pulse/native:/tmp/pulseaudio.socket

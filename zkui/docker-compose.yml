@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  zkui:
+    image: tobilg/zookeeper-webui
+    ports:
+      - 28080:8080
+    environment:
+      USER: admin
+      PASSWORD: admin
+      ZK_DEFAULT_NODE: 172.18.239.58:22181

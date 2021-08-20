@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  nexus:
+    image: yandex/clickhouse-server:20.1.14.107
+    restart: always
+    ports:
+      - 8123:8123
+      - 9000:9000
+    volumes:
+      - /opt/clickhouse:/var/lib/clickhouse

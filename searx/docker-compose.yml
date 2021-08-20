@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+
+  searx:
+    container_name: searx
+    image: searx/searx:latest
+    restart: always
+    ports:
+      - "18800:8080"
+    volumes:
+      - ./searx:/etc/searx:rw
+    environment:
+      - BASE_URL=http://192.168.50.35:18800/

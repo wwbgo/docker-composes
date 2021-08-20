@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  emqx:
+    image: emqx/emqx-ee:4.2.3
+    container_name: emqx
+    environment:
+    - "EMQX_NAME=emqx"
+    # - "EMQX_HOST=node1.emqx.io"
+    # - "EMQX_CLUSTER__DISCOVERY=static"
+    # - "EMQX_CLUSTER__STATIC__SEEDS=emqx@node1.emqx.io, emqx@node2.emqx.io"
+    ports:
+      - 1883:1883
+      - 8083:8083
+      - 8883:8883
+      - 8084:8084
+      - 18083:18083
+    volumes:
+      - ./emqx.lic:/opt/emqx/etc/emqx.lic:ro

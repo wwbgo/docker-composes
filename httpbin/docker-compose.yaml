@@ -1,0 +1,14 @@
+version: '3.5'
+
+services:
+  httpbin:
+    image: kennethreitz/httpbin
+    restart: always
+    container_name: httpbin
+    ports:
+      - "11080:80"
+
+networks:
+  default:
+    external: true
+    name: localnet

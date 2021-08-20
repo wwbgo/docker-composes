@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+  tdengine:
+    image: tdengine/tdengine:2.0.2.2
+    restart: always
+    environment:
+      HOSTNAME: tdengine
+    ports:
+      - 6030:6030
+      - 6035:6035
+      - 6041:6041
+      - 6030-6040:6030-6040/udp
+    volumes:
+      - /opt/tdengine/taos:/etc/taos
+      - /opt/tdengine/lib:/var/lib/taos
+      - /opt/tdengine/log:/var/log/taos
+networks:
+  default:
+    external: true
+    name: localnet

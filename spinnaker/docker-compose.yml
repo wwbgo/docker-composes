@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  spinnaker:
+    image: us-docker.pkg.dev/spinnaker-community/docker/halyard:stable
+    restart: always
+    container_name: spinnaker
+    ports:
+      - 8184:8084
+      - 9100:9000
+    volumes:
+      - ./.hal:/home/spinnaker/.hal
+
+networks:
+  default:
+    external: true
+    name: localnet
